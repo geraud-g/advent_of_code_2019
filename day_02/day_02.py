@@ -21,7 +21,9 @@ def instruction_add(program: List[int], a_index: int, b_index: int, store_index:
     program[store_index] = program[a_index] + program[b_index]
 
 
-def instruction_multiply(program: List[int], a_index: int, b_index: int, store_index: int):
+def instruction_multiply(
+    program: List[int], a_index: int, b_index: int, store_index: int
+):
     program[store_index] = program[a_index] * program[b_index]
 
 
