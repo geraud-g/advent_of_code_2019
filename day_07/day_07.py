@@ -69,37 +69,37 @@ class Interpreter:
         self.program[store] = self._get(a, 0) * self._get(b, 1)
         self.index += 4
 
-    def _instruction_input(self, store, *args):
+    def _instruction_input(self, store, *_):
         self.program[store] = self.input.pop(0)
         self.index += 2
 
-    def _instruction_output(self, value, *args):
+    def _instruction_output(self, value, *_):
         self.output.append(self._get(value, 0))
         self.index += 2
         if self.part == 2:
             raise StopIteration()
 
-    def _instruction_jump_if_true(self, comp, a, *args):
+    def _instruction_jump_if_true(self, comp, a, *_):
         if self._get(comp, 0) != 0:
             self.index = self._get(a, 1)
         else:
             self.index += 3
 
-    def _instruction_jump_if_false(self, comp, a, *args):
+    def _instruction_jump_if_false(self, comp, a, *_):
         if self._get(comp, 0) == 0:
             self.index = self._get(a, 1)
         else:
             self.index += 3
 
-    def _instruction_less_than(self, a, b, store, *args):
+    def _instruction_less_than(self, a, b, store, *_):
         self.program[store] = int(self._get(a, 0) < self._get(b, 1))
         self.index += 4
 
-    def _instruction_equal(self, a, b, store, *args):
+    def _instruction_equal(self, a, b, store, *_):
         self.program[store] = int(self._get(a, 0) == self._get(b, 1))
         self.index += 4
 
-    def _instruction_exit(self, *args):
+    def _instruction_exit(self, *_):
         if self.part == 2:
             raise StopFeedbackLoopException()
         raise StopIteration()
